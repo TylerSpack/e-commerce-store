@@ -1,0 +1,27 @@
+.dropdownBar{
+    font-size: 2em;
+    position: relative;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+.options{
+    position: absolute;
+    background-color: #dadfea;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    top: 30px;
+}
+.hide{
+    display: none;
+}
+.dropdownContainer{
+    display:flex;
+    justify-content: center;
+}
+.dropdownButton{
+    height: 30px;
+    border: none;
+    background-color: #929292;
+}

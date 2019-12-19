@@ -1,0 +1,36 @@
+.product{
+    width:100%;
+    padding: 10px;
+    margin: 20px 10px;
+    display: flex;
+    border: 1px solid black;
+    border-radius: 5px;
+    justify-content: space-between;
+}
+.product > img{
+    max-width: 25%;
+    min-height: 100px;
+    max-height: 300px;
+}
+.productInfo{
+    display:flex;
+    flex-direction: column;
+    padding: 0 0 0 25px;
+    text-align: right;
+}
+.productTitle{
+    text-align: center;
+    padding: 0 0 5px 0;
+}
+.productContent{
+    display:flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+.cartButton{
+    width: 100px;
+}
+.hide{
+    display:none;
+}

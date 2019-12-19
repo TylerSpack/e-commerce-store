@@ -1,14 +1,20 @@
-import {combineReducers, createStore} from 'redux';
+import {createStore} from 'redux';
 
-import Footer from "../components/Footer";
-import ProductsPage from "../components/ProductsPage";
+import ProductsPage from "../components/ProductsPage/ProductsPage.js";
+import CartPage from "../components/CartPage/CartPage.js";
 
 function reducer(state, action){
     switch (action.type) {
         case "SWITCH_PAGE":
             return {
                 pageTitle: action.pageTitle,
-                ...state.links
+                ...state
+                //TODO: check to make sure that state is going to be in the proper format
+            };
+        case "ADD_PRODUCT":
+            return {
+                cart: state.cart.push(action.product),
+                ...state
             };
         default:
             return state;
@@ -19,23 +25,24 @@ const initialState = {
     pageTitle: "defTitle",
     links: [
         {
-            content: "products",
+            content: "Products",
             destination: '/products',
             component: ProductsPage,
             pageTitle: "Products"
         },
         {
-            content: "_h_",
-            destination: '/placeholderComponentLocation',
-            component: Footer,
-            pageTitle: "Footer"
-        }
+            content: "Cart",
+            destination: '/cart',
+            component: CartPage,
+            pageTitle: "Cart"
+        },
     ],
-    products:[
-        {
-
-        }
-    ]
+    cart:[]
+    // products:[
+    //     {
+    //
+    //     }
+    // ]
 };
 
 const store = createStore(reducer, initialState);

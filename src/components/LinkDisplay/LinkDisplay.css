@@ -1,0 +1,13 @@
+.links{
+    display:flex;
+    justify-content: space-evenly;
+    width: 50%;
+}
+.routerLink{
+    text-decoration: none;
+    color: black;
+    font-size: 5vw;
+}
+.routerLink:hover{
+    cursor:pointer;
+}
