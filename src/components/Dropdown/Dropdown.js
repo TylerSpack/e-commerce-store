@@ -30,8 +30,8 @@ class Dropdown extends React.Component {
         return (
             <div className='dropdownContainer'>
                 <div className='dropdownBar'>
-                    <button onClick={this.handleDropdownClick} className='dropdownButton'>Dropdown</button>
-                    <div className={this.state.show + ' options'}>{this.renderOptions()}</div>
+                    <div onClick={this.handleDropdownClick} className='dropdownButton'>Categories</div>
+                    <div id='optionsList' className={this.state.show + ' options'}>{this.renderOptions()}</div>
                 </div>
             </div>
         );

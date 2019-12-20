@@ -3,8 +3,7 @@
     padding: 10px;
     margin: 20px 10px;
     display: flex;
-    border: 1px solid black;
-    border-radius: 5px;
+    border-bottom: 1px solid #dadfea;
     justify-content: space-between;
 }
 .product > img{
@@ -19,8 +18,14 @@
     text-align: right;
 }
 .productTitle{
-    text-align: center;
     padding: 0 0 5px 0;
+    font-size: 3.5vw;
+}
+.productPrice{
+    font-size: 3vw;
+}
+.productDescription{
+    font-size: 1.75vw;
 }
 .productContent{
     display:flex;

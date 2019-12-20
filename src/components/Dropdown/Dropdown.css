@@ -2,19 +2,24 @@
     font-size: 2em;
     position: relative;
     display: flex;
-    width: 100%;
     justify-content: center;
+    width: 25%;
 }
-.options{
+.options {
     position: absolute;
     background-color: #dadfea;
     display: flex;
     flex-direction: column;
     text-align: center;
     top: 30px;
+    width: 100%;
+    height: auto;
+    max-height: 1000px;
+    transition: max-height 0.5s linear;
+    overflow: hidden;
 }
 .hide{
-    display: none;
+    max-height: 0;
 }
 .dropdownContainer{
     display:flex;
@@ -24,4 +29,7 @@
     height: 30px;
     border: none;
     background-color: #929292;
+    width:100%;
+    font-size: 1.5vw;
+    text-align: center;
 }

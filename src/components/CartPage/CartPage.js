@@ -2,21 +2,42 @@ import React from 'react';
 
 import './CartPage.css'
 import store from '../../store'
-import Product from "../Product/Product";
+import CartProduct from "../CartProduct/CartProduct";
 
-class CartPage extends React.Component{
-    renderProducts(){
-        console.log(store)
-        return store.getState().cart.map((product, idx) => (
-            <Product product={product} key={idx} isCart={true}/>
-        ));
+class CartPage extends React.Component {
+    renderProducts() {
+        return store.getState().cart.map((cartItem, idx) => {
+            let quantity = store.getState().cart.find(cartProduct => cartProduct.id === cartItem.product.id).quantity;
+            return (
+                <CartProduct quantity={quantity} product={cartItem.product} key={idx} isCart={true}/>
+            )
+        });
     }
-    render(){
-        return(
-            <div className='products'>
-                {this.renderProducts()}
-            </div>
-        )
+
+    calculateTotal() {
+        let total = 0;
+        store.getState().cart.forEach(currentProduct => {
+            total += currentProduct.product.price * currentProduct.quantity;
+        });
+        return total;
+    }
+
+    render() {
+        if (store.getState().cart.length > 0) {
+            return (
+                <div className='products'>
+                    {this.renderProducts()}
+                    <span>TOTAL: ${this.calculateTotal()}</span>
+                </div>
+            );
+        } else {
+            return (
+                <div className='products'>
+                    <span>The Cart is Empty</span>
+                </div>
+            );
+        }
+
     }
 }
 

@@ -38,7 +38,7 @@ class App extends React.Component {
 }
 
 //TODO: test links to make sure that they work
-
+//TODO: add 5 star ratings that show partially filled stars?
 const WrappedApp = () => (
     <Provider store={store}>
         <App/>

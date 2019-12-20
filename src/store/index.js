@@ -2,8 +2,11 @@ import {createStore} from 'redux';
 
 import ProductsPage from "../components/ProductsPage/ProductsPage.js";
 import CartPage from "../components/CartPage/CartPage.js";
+import LoginPage from '../components/LoginPage/LoginPage.js'
 
-function reducer(state, action){
+function reducer(state, action) {
+    let newCart = [...state.cart];
+    let productIndex;
     switch (action.type) {
         case "SWITCH_PAGE":
             return {
@@ -12,10 +15,54 @@ function reducer(state, action){
                 //TODO: check to make sure that state is going to be in the proper format
             };
         case "ADD_PRODUCT":
+            if (state.cart.some((product) => product.id === action.product.id)) {
+                let productIndex = newCart.findIndex((product) => product.id === action.product.id);
+                console.log(productIndex);
+                newCart[productIndex].quantity += 1;
+                return {
+                    ...state,
+                    cart: newCart
+                }
+            } else {
+                newCart.push({
+                    id: action.product.id,
+                    product: action.product,
+                    quantity: 1
+                });
+                return {
+                    ...state,
+                    cart: newCart
+                }
+            }
+        case "CHANGE_CART_QUANTITY":
+            productIndex = newCart.findIndex((product) => product.id === action.productId);
+            newCart[productIndex].quantity += action.quantityAdjustment;
+            if (newCart[productIndex].quantity > 0){
+                return {
+                    ...state,
+                    cart: newCart
+                };
+            }
+            else{
+                newCart.splice(productIndex, 1);
+                console.log(productIndex);
+                console.log(newCart);
+                return {
+                    ...state,
+                    cart: newCart
+                };
+            }
+        case "REMOVE_PRODUCT":
+            productIndex = newCart.findIndex((product) => product.id === action.productId);
+            console.log("product index ", productIndex);
+            console.log(action);
+            newCart.splice(productIndex,1);
             return {
-                cart: state.cart.push(action.product),
-                ...state
+                ...state,
+                cart: newCart
             };
+
+
         default:
             return state;
     }
@@ -36,13 +83,14 @@ const initialState = {
             component: CartPage,
             pageTitle: "Cart"
         },
+        {
+            content: "Login",
+            destination: '/login',
+            component: LoginPage,
+            pageTitle: "Login"
+        },
     ],
-    cart:[]
-    // products:[
-    //     {
-    //
-    //     }
-    // ]
+    cart: []
 };
 
 const store = createStore(reducer, initialState);
