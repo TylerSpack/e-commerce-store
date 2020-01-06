@@ -1,97 +1,27 @@
 import {createStore} from 'redux';
 
-import ProductsPage from "../components/ProductsPage/ProductsPage.js";
-import CartPage from "../components/CartPage/CartPage.js";
-import LoginPage from '../components/LoginPage/LoginPage.js'
+import {combineReducers} from "redux";
 
-function reducer(state, action) {
-    let newCart = [...state.cart];
-    let productIndex;
-    switch (action.type) {
-        case "SWITCH_PAGE":
-            return {
-                pageTitle: action.pageTitle,
-                ...state
-                //TODO: check to make sure that state is going to be in the proper format
-            };
-        case "ADD_PRODUCT":
-            if (state.cart.some((product) => product.id === action.product.id)) {
-                let productIndex = newCart.findIndex((product) => product.id === action.product.id);
-                console.log(productIndex);
-                newCart[productIndex].quantity += 1;
-                return {
-                    ...state,
-                    cart: newCart
-                }
-            } else {
-                newCart.push({
-                    id: action.product.id,
-                    product: action.product,
-                    quantity: 1
-                });
-                return {
-                    ...state,
-                    cart: newCart
-                }
-            }
-        case "CHANGE_CART_QUANTITY":
-            productIndex = newCart.findIndex((product) => product.id === action.productId);
-            newCart[productIndex].quantity += action.quantityAdjustment;
-            if (newCart[productIndex].quantity > 0){
-                return {
-                    ...state,
-                    cart: newCart
-                };
-            }
-            else{
-                newCart.splice(productIndex, 1);
-                console.log(productIndex);
-                console.log(newCart);
-                return {
-                    ...state,
-                    cart: newCart
-                };
-            }
-        case "REMOVE_PRODUCT":
-            productIndex = newCart.findIndex((product) => product.id === action.productId);
-            console.log("product index ", productIndex);
-            console.log(action);
-            newCart.splice(productIndex,1);
-            return {
-                ...state,
-                cart: newCart
-            };
+import cartReducer from "./cartReducer";
+import loadCategoriesReducer from "./loadCategoriesReducer";
+import loadProductsReducer from "./loadProductsReducer";
+import userReducer from "./userReducer";
 
-
-        default:
-            return state;
+let reducer = combineReducers({
+        cart: cartReducer,
+        products: loadProductsReducer,
+        categories: loadCategoriesReducer,
+        user: userReducer,
+        validUsers: () => [
+            {
+                username: 'admin',
+                password: 'password',
+                img: "https://www.vermontcountrystore.com/ccstore/v1/images/?source=/file/v2382438315417247454/products/56423.main.png&height=500&width=500&quality=0.88"
+            }
+        ]
     }
-}
+);
 
-const initialState = {
-    pageTitle: "defTitle",
-    links: [
-        {
-            content: "Products",
-            destination: '/products',
-            component: ProductsPage,
-            pageTitle: "Products"
-        },
-        {
-            content: "Cart",
-            destination: '/cart',
-            component: CartPage,
-            pageTitle: "Cart"
-        },
-        {
-            content: "Login",
-            destination: '/login',
-            component: LoginPage,
-            pageTitle: "Login"
-        },
-    ],
-    cart: []
-};
-
-const store = createStore(reducer, initialState);
+const store = createStore(reducer);
+console.log("store", store.getState());
 export default store;

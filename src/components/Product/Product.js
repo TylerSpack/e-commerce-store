@@ -3,6 +3,9 @@ import React from 'react';
 import './Product.css'
 
 import store from '../../store'
+import {
+   Link
+} from "react-router-dom";
 
 class Product extends React.Component{
     handleClick = () => {
@@ -20,7 +23,9 @@ class Product extends React.Component{
                 <img src={this.props.product.img} alt={this.props.product.title}/>
                 <div className='productContent'>
                     <div className='productInfo'>
-                        <span className='productTitle'>{this.props.product.title}</span>
+                        <Link to={'/productDetailsPage/' + this.props.product.id} className='productTitle'>
+                            <span>{this.props.product.title}</span>
+                        </Link>
                         <span className='productDescription'>{this.props.product.description}</span>
                         <span className={'productPrice'}>${this.props.product.price}</span>
                         <span>{this.props.product.rating}/5 stars</span>

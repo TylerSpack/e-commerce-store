@@ -40,7 +40,7 @@ class Product extends React.Component{
                             <span>{cartQuantity}</span>
                             <button onClick={() => this.changeQuantity(-1)}>-</button>
                         </div>
-                        <span>TOTAL: ${totalPrice}</span>
+                        <span>TOTAL: ${totalPrice.toFixed(2)}</span>
 
                     </div>
 

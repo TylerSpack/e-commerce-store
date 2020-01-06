@@ -1,16 +1,40 @@
 import React from 'react';
 import {Link} from "react-router-dom";
 
-import MenuLink from '../MenuLink/MenuLink.js';
 import './LinkDisplay.css';
 
+import store from "../../store";
+
 class LinkDisplay extends React.Component {
+    getCartQuantity() {
+        let cartCopy = store.getState().cart;
+        let itemsInCart = 0;
+        for (let i = 0; i < cartCopy.length; i++) {
+            itemsInCart += cartCopy[i].quantity;
+        }
+        return itemsInCart;
+    }
     renderLinks() {
-        return this.props.links.map((link, idx) => (
-            <Link to={link.destination} key={idx} className='routerLink'>
-                <MenuLink content={link.content} pageTitle={link.pageTitle}/>
-            </Link>
-        ));
+        return this.props.links.map((link, idx) => {
+            if (link.condition()) {
+                if(link.destination === "/cart"){
+                    return (
+                        <Link to={link.destination} key={idx} className='routerLink cartLink'>
+                            <i className="fas fa-shopping-cart"/>
+                            {this.getCartQuantity() !== 0 ?
+                                (<div className="cartQuantity">{this.getCartQuantity()}</div>) :
+                            null}
+                        </Link>
+                    );
+                }
+                return (
+                    <Link to={link.destination} key={idx} className='routerLink'>
+                        <div className='link'>{link.content}</div>
+                    </Link>
+                );
+            }
+            return;
+        });
     }
 
     render() {

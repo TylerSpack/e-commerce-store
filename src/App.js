@@ -1,25 +1,24 @@
 import React from 'react';
 
 import Header from './components/Header/Header.js';
+import ProductsPage from "./components/ProductsPage/ProductsPage";
+import CartPage from "./components/CartPage/CartPage.js";
+import LoginPage from './components/LoginPage/LoginPage.js'
+import ProfilePage from "./components/ProfilePage/ProfilePage";
+
 import {Provider} from "react-redux";
 import store from './store';
+import ProductDetailsPage from "./components/ProductDetailsPage/ProductDetailsPage";
 import {
     BrowserRouter as Router,
     Route,
     Switch
 } from "react-router-dom";
-import Footer from "./components/Footer/Footer.js";
+
 
 class App extends React.Component {
     componentDidMount() {
         store.subscribe(() => this.forceUpdate())
-    }
-
-    getRoutes() {
-        let links = store.getState().links;
-        return links.map((link, idx) => (
-            <Route path={link.destination} component={link.component} key={idx}/>
-        ));
     }
 
     render() {
@@ -28,8 +27,12 @@ class App extends React.Component {
                 <div className="App">
                     <Header/>
                     <Switch>
-                        {this.getRoutes()}
-                        <Route path="/" component={Footer} key={-1}/>
+                        <Route path="/products" component={ProductsPage}/>
+                        <Route path="/login" component={LoginPage}/>
+                        <Route path="/profile" component={ProfilePage}/>
+                        <Route path="/cart" component={CartPage}/>
+                        <Route path="/productDetailsPage/:productID" component={ProductDetailsPage}/>
+                        <Route path="/" component={LoginPage}/>
                     </Switch>
                 </div>
             </Router>
@@ -37,7 +40,6 @@ class App extends React.Component {
     }
 }
 
-//TODO: test links to make sure that they work
 //TODO: add 5 star ratings that show partially filled stars?
 const WrappedApp = () => (
     <Provider store={store}>

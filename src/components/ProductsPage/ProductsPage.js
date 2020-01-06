@@ -3,14 +3,14 @@ import Product from "../Product/Product.js";
 import axios from 'axios';
 import './ProductsPage.css'
 import Dropdown from "../Dropdown/Dropdown";
-
+import store from "../../store";
 class ProductsPage extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             products: [],
             categories: [],
-            activeCategory: ""
+            activeCategory: "All"
         }
     }
 
@@ -20,19 +20,27 @@ class ProductsPage extends React.Component {
                 this.setState({
                     products: res.data
                 });
+                store.dispatch({
+                    type: "LOAD_PRODUCTS",
+                    products: res.data
+                });
             });
         axios.get("https://my-json-server.typicode.com/tdmichaelis/typicode/categories")
             .then((res) => {
                 this.setState({
                     categories: res.data,
-                    activeCategory: res.data[0]
+                });
+                store.dispatch({
+                    type: "LOAD_CATEGORIES",
+                    categories: res.data
                 });
             });
     }
 
     renderProducts() {
-        return this.state.products.filter(product => product.category === this.state.activeCategory
-        ).map((product, idx) => (
+        console.log(store.getState().products);
+        return store.getState().products.filter(product => product.category === this.state.activeCategory
+        || this.state.activeCategory === "All").map((product, idx) => (
             <Product product={product} key={idx}/>
         ));
     }
@@ -44,7 +52,7 @@ class ProductsPage extends React.Component {
     render() {
         return (
             <div>
-                <Dropdown options={this.state.categories} dataReciever={this.setCategory}/>
+                <Dropdown options={store.getState().categories} selected={this.state.activeCategory} dataReciever={this.setCategory}/>
                 <div className='products'>
                     {this.renderProducts()}
                 </div>

@@ -27,7 +27,7 @@ class CartPage extends React.Component {
             return (
                 <div className='products'>
                     {this.renderProducts()}
-                    <span>TOTAL: ${this.calculateTotal()}</span>
+                    <span>TOTAL: ${this.calculateTotal().toFixed(2)}</span>
                 </div>
             );
         } else {

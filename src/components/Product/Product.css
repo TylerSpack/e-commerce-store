@@ -20,9 +20,13 @@
 .productTitle{
     padding: 0 0 5px 0;
     font-size: 3.5vw;
+    text-decoration: none;
+    color: #1432c0;
+    font-weight: bold;
 }
 .productPrice{
     font-size: 3vw;
+    color: #1432c0;
 }
 .productDescription{
     font-size: 1.75vw;
@@ -34,7 +38,20 @@
     align-items: flex-end;
 }
 .cartButton{
-    width: 100px;
+    width: 25vw;
+    border: none;
+    background-color: #1432c0;
+    color:white;
+    padding: 10px 5px;
+    font-size: 2vw;
+    font-weight: bold;
+    box-shadow: 0px 0px 10px 0px rgba(143,140,143,1);
+    margin-top: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.cartButton:hover{
+
 }
 .hide{
     display:none;

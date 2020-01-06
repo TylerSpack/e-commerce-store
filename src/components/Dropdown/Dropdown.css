@@ -5,31 +5,41 @@
     justify-content: center;
     width: 25%;
 }
-.options {
-    position: absolute;
-    background-color: #dadfea;
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-    top: 30px;
-    width: 100%;
-    height: auto;
-    max-height: 1000px;
-    transition: max-height 0.5s linear;
-    overflow: hidden;
+/*.options {*/
+/*    position: absolute;*/
+/*    background-color: #dadfea;*/
+/*    display: flex;*/
+/*    flex-direction: column;*/
+/*    text-align: center;*/
+/*    top: 30px;*/
+/*    width: 100%;*/
+/*    height: auto;*/
+/*    max-height: 1000px;*/
+/*    transition: max-height 0.5s linear;*/
+/*    overflow: hidden;*/
+/*}*/
+/*.hide{*/
+/*    max-height: 0;*/
+/*}*/
+.options{
+    width: 50%;
 }
-.hide{
-    max-height: 0;
+form{
+    width: 100%;
+    margin: 0 auto;
+    display:flex;
+    justify-content: center;
 }
 .dropdownContainer{
     display:flex;
     justify-content: center;
+    width: 100%;
 }
-.dropdownButton{
-    height: 30px;
-    border: none;
-    background-color: #929292;
-    width:100%;
-    font-size: 1.5vw;
-    text-align: center;
-}
+/*.dropdownButton{*/
+/*    height: 30px;*/
+/*    border: none;*/
+/*    background-color: #929292;*/
+/*    width:100%;*/
+/*    font-size: 1.5vw;*/
+/*    text-align: center;*/
+/*}*/
