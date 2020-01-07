@@ -14,6 +14,7 @@ import {
     Route,
     Switch
 } from "react-router-dom";
+import PurchaseCompletePage from "./components/PurchaseCompletePage/PurchaseCompletePage";
 
 
 class App extends React.Component {
@@ -32,6 +33,7 @@ class App extends React.Component {
                         <Route path="/profile" component={ProfilePage}/>
                         <Route path="/cart" component={CartPage}/>
                         <Route path="/productDetailsPage/:productID" component={ProductDetailsPage}/>
+                        <Route path="/purchaseComplete" component={PurchaseCompletePage}/>
                         <Route path="/" component={LoginPage}/>
                     </Switch>
                 </div>

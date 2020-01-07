@@ -35,12 +35,12 @@ class Product extends React.Component{
                     <div>
                         <button className='cartButton' onClick={this.handleClick}>Remove From Cart</button>
                         <div>
-                            <span>Quantity: </span>
-                            <button onClick={() => this.changeQuantity(1)}>+</button>
-                            <span>{cartQuantity}</span>
-                            <button onClick={() => this.changeQuantity(-1)}>-</button>
+                            <span className="quantity">Quantity: </span>
+                            <button className="incrementButton" onClick={() => this.changeQuantity(-1)}>-</button>
+                            <span className="quantity">{cartQuantity}</span>
+                            <button className="incrementButton" onClick={() => this.changeQuantity(1)}>+</button>
                         </div>
-                        <span>TOTAL: ${totalPrice.toFixed(2)}</span>
+                        <span className='totalPrice'>TOTAL: ${totalPrice.toFixed(2)}</span>
 
                     </div>
 

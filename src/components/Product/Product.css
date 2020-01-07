@@ -10,6 +10,7 @@
     max-width: 25%;
     min-height: 100px;
     max-height: 300px;
+    object-fit: contain;
 }
 .productInfo{
     display:flex;

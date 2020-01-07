@@ -52,7 +52,8 @@ class ProductsPage extends React.Component {
     render() {
         return (
             <div>
-                <Dropdown options={store.getState().categories} selected={this.state.activeCategory} dataReciever={this.setCategory}/>
+                <Dropdown options={store.getState().categories} selected={this.state.activeCategory}
+                          dataReciever={this.setCategory}/>
                 <div className='products'>
                     {this.renderProducts()}
                 </div>

@@ -3,6 +3,7 @@ import React from 'react';
 import './CartPage.css'
 import store from '../../store'
 import CartProduct from "../CartProduct/CartProduct";
+import {Link} from "react-router-dom";
 
 class CartPage extends React.Component {
     renderProducts() {
@@ -27,7 +28,8 @@ class CartPage extends React.Component {
             return (
                 <div className='products'>
                     {this.renderProducts()}
-                    <span>TOTAL: ${this.calculateTotal().toFixed(2)}</span>
+                    <span className="lowerCartContent">TOTAL: ${this.calculateTotal().toFixed(2)}</span>
+                    <Link className="lowerCartContent" to="/purchaseComplete">Complete Purchase</Link>
                 </div>
             );
         } else {

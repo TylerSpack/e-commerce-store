@@ -25,10 +25,6 @@ export default function cartReducer(state = [], action) {
         case "CHANGE_CART_QUANTITY":
             productIndex = newCart.findIndex((product) => product.id === action.productId);
             newCart[productIndex].quantity += action.quantityAdjustment;
-
-
-
-
             if (newCart[productIndex].quantity > 0) {
                 return newCart;
             } else {
@@ -37,6 +33,8 @@ export default function cartReducer(state = [], action) {
                 console.log(newCart);
                 return newCart;
             }
+        case "CLEAR_CART":
+            return [];
         default:
             return state;
     }

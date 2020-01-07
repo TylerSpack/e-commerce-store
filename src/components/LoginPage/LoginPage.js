@@ -2,6 +2,8 @@ import React from 'react';
 
 import store from '../../store';
 
+import "./LoginPage.css";
+
 class LoginPage extends React.Component {
     state = {
         fields: {
@@ -46,15 +48,16 @@ class LoginPage extends React.Component {
             });
             this.props.history.push("/products");
         } else {
-            this.setState({errors: 'invalid username or password'});
+            this.setState({errors: 'Invalid username or password'});
         }
     };
 
     render() {
         return (
-            <div>
-                <span>Login</span>
-                <form onSubmit={this.onFormSubmit}>
+            <div className="loginContainer">
+                <span className="loginTitle">Login</span>
+                <form onSubmit={this.onFormSubmit} className="loginForm">
+                    <span className='error'>{this.state.errors}</span>
                     <input
                         placeholder='username'
                         name='username'
@@ -66,8 +69,8 @@ class LoginPage extends React.Component {
                         name='password'
                         value={this.state.fields.password}
                         onChange={this.onInputChange}
+                        type="password"
                     />
-                    <span className='error'>{this.state.errors}</span>
                     <input type='submit'/>
                 </form>
 

@@ -52,12 +52,12 @@ class ProductDetailsPage extends React.Component {
         } else {
             return (
                 <div className='detailsProduct'>
-                    <span>{this.state.product.title}</span>
+                    <span className="productTitle">{this.state.product.title}</span>
                     <div className='imageContainer'>
                         <img src={this.state.product.img} alt={this.state.product.title} className='image'/>
                     </div>
-                    <span>{this.state.product.description}</span>
-                    <span>${this.state.product.price.toFixed(2)}</span>
+                    <span className="productDescription">{this.state.product.description}</span>
+                    <span className="productPrice">${this.state.product.price.toFixed(2)}</span>
                     <span>{this.state.product.rating}/5 stars</span>
                     <button className='cartButton' onClick={this.handleClick}>Add To Cart</button>
                 </div>

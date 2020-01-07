@@ -14,7 +14,7 @@ class ProfilePage extends React.Component {
                 {!user.username ? (<Redirect to="/login"/>) : (
                     <div className="profile">
                         <img src={user.img} alt="profilePic" className="profileImage"/>
-                        <span className="username">{user.username}</span>
+                        <span className="username">Welcome {user.username}!</span>
                     </div>)}
             </div>
         );
