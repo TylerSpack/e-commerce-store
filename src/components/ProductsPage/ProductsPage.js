@@ -38,7 +38,6 @@ class ProductsPage extends React.Component {
     }
 
     renderProducts() {
-        console.log(store.getState().products);
         return store.getState().products.filter(product => product.category === this.state.activeCategory
         || this.state.activeCategory === "All").map((product, idx) => (
             <Product product={product} key={idx}/>

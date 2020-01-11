@@ -3,12 +3,13 @@ import React from 'react';
 import './CartProduct.css'
 
 import store from '../../store'
+import StarRatings from "react-star-ratings";
 
 class Product extends React.Component{
     handleClick = () => {
         store.dispatch({
             type: "REMOVE_PRODUCT",
-            productId: this.props.product.id
+            productId: this.props.product.id,
         });
         this.forceUpdate();
         //TODO: make this work
@@ -30,7 +31,11 @@ class Product extends React.Component{
                     <div className='productInfo'>
                         <span className='productTitle'>{this.props.product.title}</span>
                         <span className={'productPrice'}>${this.props.product.price}</span>
-                        <span>{this.props.product.rating}/5 stars</span>
+                        <StarRatings
+                            rating={this.props.product.rating}
+                            starRatedColor="gold"
+                            numberOfStars={5}
+                        />
                     </div>
                     <div>
                         <button className='cartButton' onClick={this.handleClick}>Remove From Cart</button>

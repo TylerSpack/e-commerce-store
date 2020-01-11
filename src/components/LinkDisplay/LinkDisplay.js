@@ -15,8 +15,8 @@ class LinkDisplay extends React.Component {
         return itemsInCart;
     }
     renderLinks() {
-        return this.props.links.map((link, idx) => {
-            if (link.condition()) {
+        return this.props.links.filter(link => link.condition()).map((link, idx) =>
+            {
                 if(link.destination === "/cart"){
                     return (
                         <Link to={link.destination} key={idx} className='routerLink cartLink'>
@@ -33,8 +33,7 @@ class LinkDisplay extends React.Component {
                     </Link>
                 );
             }
-            return;
-        });
+        );
     }
 
     render() {

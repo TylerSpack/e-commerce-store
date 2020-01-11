@@ -15,6 +15,7 @@ import {
     Switch
 } from "react-router-dom";
 import PurchaseCompletePage from "./components/PurchaseCompletePage/PurchaseCompletePage";
+import Footer from "./components/Footer/Footer";
 
 
 class App extends React.Component {
@@ -36,17 +37,11 @@ class App extends React.Component {
                         <Route path="/purchaseComplete" component={PurchaseCompletePage}/>
                         <Route path="/" component={LoginPage}/>
                     </Switch>
+                    <Footer/>
                 </div>
             </Router>
         );
     }
 }
 
-//TODO: add 5 star ratings that show partially filled stars?
-const WrappedApp = () => (
-    <Provider store={store}>
-        <App/>
-    </Provider>
-);
-
-export default WrappedApp;
+export default App;

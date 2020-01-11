@@ -6,6 +6,7 @@ import store from '../../store'
 import {
    Link
 } from "react-router-dom";
+import StarRatings from "react-star-ratings";
 
 class Product extends React.Component{
     handleClick = () => {
@@ -28,7 +29,11 @@ class Product extends React.Component{
                         </Link>
                         <span className='productDescription'>{this.props.product.description}</span>
                         <span className={'productPrice'}>${this.props.product.price}</span>
-                        <span>{this.props.product.rating}/5 stars</span>
+                        <StarRatings
+                            rating={this.props.product.rating}
+                            starRatedColor="gold"
+                            numberOfStars={5}
+                        />
                     </div>
                     <button className='cartButton' onClick={this.handleClick}>{this.setButtonText()}</button>
                 </div>

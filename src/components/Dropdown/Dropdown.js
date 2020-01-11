@@ -9,7 +9,7 @@ class Dropdown extends React.Component {
     };
     renderOptions(){
         return this.props.options.map((opt, idx) => (
-            <option key={idx} value={opt}>{opt}</option>
+            <option key={idx} value={opt}>{opt[0].toUpperCase() + opt.substr(1)}</option>
         ));
     }
     render() {

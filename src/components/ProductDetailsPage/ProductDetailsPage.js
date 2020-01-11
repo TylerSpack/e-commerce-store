@@ -2,6 +2,7 @@ import React from 'react';
 
 import store from '../../store';
 import axios from "axios";
+import StarRatings from "react-star-ratings";
 import "./ProductDetailsPage.css";
 
 class ProductDetailsPage extends React.Component {
@@ -34,7 +35,6 @@ class ProductDetailsPage extends React.Component {
                 }
             );
         }
-        console.log("cdm here");
 
     }
 
@@ -47,7 +47,6 @@ class ProductDetailsPage extends React.Component {
 
     render() {
         if (this.state.product === undefined || this.state.product === null) {
-            console.log("here", store.getState().products);
             return (<div>Loading...</div>);
         } else {
             return (
@@ -58,7 +57,11 @@ class ProductDetailsPage extends React.Component {
                     </div>
                     <span className="productDescription">{this.state.product.description}</span>
                     <span className="productPrice">${this.state.product.price.toFixed(2)}</span>
-                    <span>{this.state.product.rating}/5 stars</span>
+                    <StarRatings
+                        rating={this.state.product.rating}
+                        starRatedColor="gold"
+                        numberOfStars={5}
+                    />
                     <button className='cartButton' onClick={this.handleClick}>Add To Cart</button>
                 </div>
             );
